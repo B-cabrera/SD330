@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Refrigerator</title>
+  </head>
+
+  <style>
+    body {
+      background-color: tan;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    h3 {
+      font-weight: 900;
+    }
+
+    #screen {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    #fridge {
+      display: flex;
+      flex-direction: column;
+      background-color: silver;
+      width: 40%;
+      height: 90vh;
+      gap: 2px;
+    }
+
+    .smallWidget {
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .largeWidget {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+    }
+
+    #netflix {
+      background-color: black;
+    }
+
+    #netflix:hover,
+    #google:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+    #google {
+      background-color: white;
+    }
+
+    #temp {
+      background-color: brown;
+    }
+
+    #inside {
+      width: 40%;
+      height: 90vh;
+      display: none;
+    }
+  </style>
+
+  <body>
+    <h1>Refrigerator</h1>
+    <div id="screen">
+      <div id="inside">
+        <img
+          src="https://www.naturefresh.ca/wp-content/uploads/How-To-Organize-Your-Fridge-InsideFridge-terraskitchen.jpg"
+          alt=""
+          height="100%"
+        />
+      </div>
+
+      <div id="fridge">
+        <div class="row">
+          <div class="largeWidget">
+            <h3>Time</h3>
+            <p id="time"></p>
+          </div>
+
+          <div id="power" class="smallWidget">
+            <h3>Power</h3>
+            <button onclick="togglePower()" id="onoff">On</button>
+          </div>
+        </div>
+
+        <div id="temp" class="row">
+          <h3>Temperature: 30 &deg;</h3>
+        </div>
+
+        <div class="row">
+          <div
+            id="netflix"
+            class="largeWidget"
+            onclick="toggleNetflixDisplay()"
+          >
+            <img
+              src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+              alt=""
+              width="50%"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div id="google" class="largeWidget" onclick="toggleGoogleDisplay()">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1280px-Google_2015_logo.svg.png"
+              alt=""
+              width="50%"
+            />
+          </div>
+        </div>
+
+        <div>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/f/f4/Netflix_-_English.jpg"
+            alt=""
+            id="netflixImage"
+            style="display: none"
+          />
+
+          <img
+            src="https://upload.wikimedia.org/wikipedia/en/a/a7/Google_Homepage.PNG"
+            alt=""
+            width="80%"
+            id="googleImage"
+            style="display: none"
+          />
+        </div>
+
+        <div class="row" onclick="toggleFridge()">
+          <button id="openclose">Open Fridge</button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    window.onload = () => {
+      powerToggle();
+      displayTime();
+
+      setInterval(displayTime, 100);
+    };
+    function powerToggle() {
+      const powerButton = document.getElementById("onoff");
+      const powerDiv = document.getElementById("power");
+
+      if (powerButton.innerText == "On") {
+        powerDiv.style.backgroundColor = "green";
+      } else {
+        powerDiv.style.backgroundColor = "red";
+      }
+    }
+
+    function togglePower() {
+      const powerButton = document.getElementById("onoff");
+
+      if (powerButton.innerText == "On") {
+        powerButton.innerText = "Off";
+      } else {
+        powerButton.innerText = "On";
+      }
+
+      powerToggle();
+    }
+
+    function displayTime() {
+      const time = document.getElementById("time");
+      const currentDate = new Date();
+
+      time.innerText =
+        currentDate.getHours() +
+        ":" +
+        currentDate.getMinutes() +
+        ":" +
+        currentDate.getSeconds();
+    }
+
+    function toggleNetflixDisplay() {
+      document.getElementById("googleImage").style.display = "none";
+      const netflixImage = document.getElementById("netflixImage");
+
+      if (netflixImage.style.display == "none") {
+        netflixImage.style.display = "initial";
+      } else {
+        netflixImage.style.display = "none";
+      }
+    }
+
+    function toggleGoogleDisplay() {
+      document.getElementById("netflixImage").style.display = "none";
+      const googleImage = document.getElementById("googleImage");
+
+      if (googleImage.style.display == "none") {
+        googleImage.style.display = "initial";
+      } else {
+        googleImage.style.display = "none";
+      }
+    }
+
+    function toggleFridge() {
+      const innerFridge = document.getElementById("inside");
+      const openButton = document.getElementById("openclose");
+
+      if (openButton.innerText == "Open Fridge") {
+        innerFridge.style.display = "initial";
+        openButton.innerText = "Close Fridge";
+      } else {
+        innerFridge.style.display = "none";
+        openButton.innerText = "Open Fridge";
+      }
+    }
+  </script>
+</html>
