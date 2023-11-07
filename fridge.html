@@ -3,168 +3,355 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Refrigerator</title>
+    <title>Fridge</title>
   </head>
-
   <style>
     body {
-      background-color: tan;
+      margin: 0px;
     }
 
-    h1 {
+    h4 {
+      margin: 0px;
+      padding-top: 10px;
+    }
+
+    .btn {
+      all: unset;
       text-align: center;
     }
 
-    h3 {
-      font-weight: 900;
+    .btn:hover {
+      opacity: 0.8;
+    }
+
+    .btn:active {
+      opacity: 0.5;
+    }
+
+    .btn:disabled {
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .widget {
+      width: 30%;
+      height: 100%;
+      text-align: center;
+      color: white;
+      font-size: 40px;
+    }
+
+    .app-screen > img {
+      width: 1040px;
+      height: 515px;
+    }
+
+    .app {
+      height: 13%;
+      background-color: lightcoral;
+    }
+
+    .app > img {
+      height: 90%;
+      width: 60%;
+    }
+
+    .selected {
+      border: 1px solid yellow;
     }
 
     #screen {
       display: flex;
-      justify-content: space-around;
+      height: 100vh;
+      width: 100vw;
+      background-color: darkblue;
+      justify-content: center;
+      align-items: center;
     }
 
-    #fridge {
-      display: flex;
-      flex-direction: column;
-      background-color: silver;
-      width: 40%;
+    #panel {
+      width: 80vw;
       height: 90vh;
-      gap: 2px;
+      background-color: aliceblue;
     }
 
-    .smallWidget {
-      width: 25%;
+    #widgets-row {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      height: 25%;
     }
 
-    .largeWidget {
-      width: 100%;
+    #display-row {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      height: 73.3%;
     }
 
-    .row {
-      display: flex;
-      justify-content: center;
-    }
-
-    #netflix {
-      background-color: black;
-    }
-
-    #netflix:hover,
-    #google:hover {
-      cursor: pointer;
-      opacity: 0.8;
-    }
-
-    #google {
-      background-color: white;
-    }
-
-    #temp {
+    #temp-widget {
       background-color: brown;
     }
 
-    #inside {
-      width: 40%;
-      height: 90vh;
-      display: none;
+    #temp-widget > p {
+      margin-top: 10px;
+      margin-bottom: 0px;
+      font-size: 80%;
+    }
+
+    #button-container {
+      width: 100%;
+      height: 43%;
+      background-color: purple;
+      display: flex;
+    }
+
+    #hot {
+      background-color: red;
+      width: 50%;
+    }
+
+    #cold {
+      background-color: blue;
+      width: 50%;
+    }
+
+    #time-widget {
+      background-color: rgb(62, 62, 62);
+    }
+
+    #weather-widget {
+      background-color: black;
+    }
+
+    #power-widget {
+      display: grid;
+      width: 10%;
+      height: 100%;
+      place-items: center;
+      font-size: 50px;
+    }
+
+    #power-button {
+      height: 100%;
+      width: 100%;
+    }
+
+    #applications {
+      width: 10%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #display {
+      background-color: purple;
+      width: 90%;
+      height: 102.5%;
+    }
+
+    #timer-view {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+
+    #timer {
+      font-size: 40px;
     }
   </style>
 
   <body>
-    <h1>Refrigerator</h1>
     <div id="screen">
-      <div id="inside">
-        <img
-          src="https://www.naturefresh.ca/wp-content/uploads/How-To-Organize-Your-Fridge-InsideFridge-terraskitchen.jpg"
-          alt=""
-          height="100%"
-        />
-      </div>
+      <div id="panel">
+        <div id="widgets-row">
+          <div class="widget" id="temp-widget">
+            <p>Temperature</p>
 
-      <div id="fridge">
-        <div class="row">
-          <div class="largeWidget">
-            <h3>Time</h3>
-            <p id="time"></p>
+            <p id="temp"></p>
+
+            <div id="button-container">
+              <button id="cold" class="btn" onclick="decreaseTemp()">-</button>
+              <button id="hot" class="btn" onclick="increaseTemp()">+</button>
+            </div>
           </div>
 
-          <div id="power" class="smallWidget">
-            <h3>Power</h3>
-            <button onclick="togglePower()" id="onoff">On</button>
+          <div class="widget" id="time-widget">
+            <h4>Time</h4>
+
+            <h4 id="time"></h4>
+          </div>
+
+          <div class="widget" id="weather-widget">
+            <h4>Today's Weather</h4>
+
+            <h4 id="weather">Partly Sunny</h4>
+          </div>
+
+          <div id="power-widget">
+            <button class="btn" id="power-button" onclick="togglePower()">
+              Off
+            </button>
           </div>
         </div>
+        <div id="display-row">
+          <div id="applications">
+            <button class="btn app" onclick="showFridgeView()" disabled>
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/3843/3843655.png"
+                alt="fridge inside view button"
+              />
+            </button>
 
-        <div id="temp" class="row">
-          <h3>Temperature: 30 &deg;</h3>
-        </div>
+            <button class="btn app" onclick="showGoogleView()" disabled>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/640px-Google_%22G%22_Logo.svg.png"
+                alt="google button"
+              />
+            </button>
 
-        <div class="row">
-          <div
-            id="netflix"
-            class="largeWidget"
-            onclick="toggleNetflixDisplay()"
-          >
-            <img
-              src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-              alt=""
-              width="50%"
-            />
+            <button class="btn app" onclick="showAmazonView()" disabled>
+              <img
+                src="https://wosu.org/wp-content/uploads/2020/04/Amazon-Logo-Transparent-PNG.png"
+                alt="amazon button"
+              />
+            </button>
+
+            <button class="btn app" onclick="showIGView()" disabled>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png"
+                alt="instagram button"
+              />
+            </button>
+
+            <button class="btn app" onclick="showFBView()" disabled>
+              <img
+                src="https://cdn.freebiesupply.com/logos/large/2x/facebook-3-logo-png-transparent.png"
+                alt="facebook button"
+              />
+            </button>
+
+            <button class="btn app" onclick="showNetflixView()" disabled>
+              <img
+                src="https://pngimg.com/d/netflix_PNG22.png"
+                alt="netflix button"
+              />
+            </button>
+
+            <button class="btn app" onclick="showTimerView()" disabled>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Hourglass_icon.png"
+                alt="timer button"
+              />
+            </button>
+
+            <button class="btn app" onclick="showAppStoreView()" disabled>
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/2182/2182944.png"
+                alt="add button"
+              />
+            </button>
           </div>
-        </div>
 
-        <div class="row">
-          <div id="google" class="largeWidget" onclick="toggleGoogleDisplay()">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1280px-Google_2015_logo.svg.png"
-              alt=""
-              width="50%"
-            />
+          <div id="display">
+            <div id="fridge-view" class="app-screen" style="display: none">
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/024/570/332/large_2x/refrigerator-full-of-healthy-food-fruit-and-vegetables-horizontal-an-opened-fridge-full-of-fresh-fruits-and-vegetables-ai-generated-free-photo.jpg"
+                alt="fridge view"
+              />
+            </div>
+
+            <div id="google-view" class="app-screen" style="display: none">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_Homepage.svg/1280px-Google_Homepage.svg.png"
+                alt=""
+              />
+            </div>
+
+            <div id="amazon-view" class="app-screen" style="display: none">
+              <img src="https://i.stack.imgur.com/gNTbn.jpg" alt="" />
+            </div>
+
+            <div id="instagram-view" class="app-screen" style="display: none">
+              <img
+                src="https://www.freecodecamp.org/news/content/images/2020/10/Instagram-desktop-home-1.png"
+                alt=""
+              />
+            </div>
+
+            <div id="facebook-view" class="app-screen" style="display: none">
+              <img
+                src="https://s.yimg.com/os/creatr-uploaded-images/2020-05/9c143b80-9134-11ea-bfdf-54dbdb5316e4"
+                alt=""
+              />
+            </div>
+
+            <div id="netflix-view" class="app-screen" style="display: none">
+              <img
+                src="https://d3dh6of9cnaq4t.cloudfront.net/Pictures/1024x536/8/5/0/20850_netflixhomepage_840558.jpg"
+                alt=""
+              />
+            </div>
+
+            <div id="timer-view" class="app-screen" style="display: none">
+              <h1>60 sec Timer</h1>
+
+              <button id="timer-start" onclick="startTimer()">Start</button>
+
+              <p id="timer"></p>
+            </div>
+
+            <div id="appstore-view" class="app-screen" style="display: none">
+              <img
+                src="https://help.apple.com/assets/63C09065AB12867F796881E5/63C09080AB12867F796881ED/en_US/9012dc1967430f295cc66db86620e5ca.png"
+                alt=""
+              />
+            </div>
           </div>
-        </div>
-
-        <div>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/en/f/f4/Netflix_-_English.jpg"
-            alt=""
-            id="netflixImage"
-            style="display: none"
-          />
-
-          <img
-            src="https://upload.wikimedia.org/wikipedia/en/a/a7/Google_Homepage.PNG"
-            alt=""
-            width="80%"
-            id="googleImage"
-            style="display: none"
-          />
-        </div>
-
-        <div class="row" onclick="toggleFridge()">
-          <button id="openclose">Open Fridge</button>
         </div>
       </div>
     </div>
   </body>
 
   <script>
-    window.onload = () => {
-      powerToggle();
+    window.addEventListener("load", function () {
+      displayTemp();
       displayTime();
+      powerToggle();
 
       setInterval(displayTime, 100);
-    };
+    });
+
+    let temperature = 32;
+
+    // TEMPERATURE WIDGET
+    function displayTemp() {
+      const temperatureText = document.getElementById("temp");
+
+      temperatureText.innerHTML = `${temperature} &deg;`;
+    }
+
+    function increaseTemp() {
+      temperature++;
+
+      displayTemp();
+    }
+
+    function decreaseTemp() {
+      temperature--;
+
+      displayTemp();
+    }
+
+    // TIME WIDGET
+    function displayTime() {
+      const time = document.getElementById("time");
+      const currentDate = new Date();
+
+      time.innerText =
+        (currentDate.getHours() % 12) + ":" + currentDate.getMinutes();
+    }
+
+    // POWER WIDGET
     function powerToggle() {
-      const powerButton = document.getElementById("onoff");
-      const powerDiv = document.getElementById("power");
+      const powerButton = document.getElementById("power-button");
+      const powerDiv = document.getElementById("power-widget");
 
       if (powerButton.innerText == "On") {
         powerDiv.style.backgroundColor = "green";
@@ -174,62 +361,114 @@
     }
 
     function togglePower() {
-      const powerButton = document.getElementById("onoff");
+      const powerButton = document.getElementById("power-button");
+      const allButtons = document.querySelectorAll("button.app");
 
       if (powerButton.innerText == "On") {
+        allButtons.forEach((button) => {
+          button.disabled = true;
+        });
+
+        removeAllDisplays();
         powerButton.innerText = "Off";
       } else {
+        allButtons.forEach((button) => {
+          button.disabled = false;
+        });
         powerButton.innerText = "On";
       }
 
       powerToggle();
     }
 
-    function displayTime() {
-      const time = document.getElementById("time");
-      const currentDate = new Date();
+    function removeAllDisplays() {
+      const allDisplays = document.querySelectorAll("div.app-screen");
 
-      time.innerText =
-        currentDate.getHours() +
-        ":" +
-        currentDate.getMinutes() +
-        ":" +
-        currentDate.getSeconds();
+      allDisplays.forEach((displayView) => {
+        displayView.style.display = "none";
+      });
     }
 
-    function toggleNetflixDisplay() {
-      document.getElementById("googleImage").style.display = "none";
-      const netflixImage = document.getElementById("netflixImage");
+    function showFridgeView() {
+      removeAllDisplays();
 
-      if (netflixImage.style.display == "none") {
-        netflixImage.style.display = "initial";
-      } else {
-        netflixImage.style.display = "none";
-      }
+      const fridgeView = document.getElementById("fridge-view");
+      fridgeView.style.display = "inline-block";
     }
 
-    function toggleGoogleDisplay() {
-      document.getElementById("netflixImage").style.display = "none";
-      const googleImage = document.getElementById("googleImage");
+    function showGoogleView() {
+      removeAllDisplays();
 
-      if (googleImage.style.display == "none") {
-        googleImage.style.display = "initial";
-      } else {
-        googleImage.style.display = "none";
-      }
+      const googleView = document.getElementById("google-view");
+      googleView.style.display = "inline-block";
     }
 
-    function toggleFridge() {
-      const innerFridge = document.getElementById("inside");
-      const openButton = document.getElementById("openclose");
+    function showAmazonView() {
+      removeAllDisplays();
 
-      if (openButton.innerText == "Open Fridge") {
-        innerFridge.style.display = "initial";
-        openButton.innerText = "Close Fridge";
-      } else {
-        innerFridge.style.display = "none";
-        openButton.innerText = "Open Fridge";
-      }
+      const amazonView = document.getElementById("amazon-view");
+      amazonView.style.display = "inline-block";
+    }
+
+    function showIGView() {
+      removeAllDisplays();
+
+      const instagramView = document.getElementById("instagram-view");
+      instagramView.style.display = "inline-block";
+    }
+
+    function showFBView() {
+      removeAllDisplays();
+
+      const facebookView = document.getElementById("facebook-view");
+      facebookView.style.display = "inline-block";
+    }
+
+    function showNetflixView() {
+      removeAllDisplays();
+
+      const netflixView = document.getElementById("netflix-view");
+      netflixView.style.display = "inline-block";
+    }
+
+    function showTimerView() {
+      removeAllDisplays();
+
+      const timerView = document.getElementById("timer-view");
+      timerView.style.display = "inline-block";
+    }
+
+    function showAppStoreView() {
+      removeAllDisplays();
+
+      const appstoreView = document.getElementById("appstore-view");
+      appstoreView.style.display = "inline-block";
+    }
+
+    function startTimer() {
+      const timerText = document.getElementById("timer");
+      const timerButton = document.getElementById("timer-start");
+      const countDownDate = new Date().getTime() + 5000;
+
+      timerButton.disabled = true;
+
+      var test = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+
+        timerText.innerText = Math.floor((distance % (1000 * 60)) / 1000);
+
+        if (distance < 0) {
+          clearInterval(test);
+          timerButton.disabled = false;
+          timerText.innerHTML = "";
+
+          var audio = new Audio(
+            "http://soundbible.com/grab.php?id=1355&type=mp3"
+          );
+          audio.play();
+        }
+      }, 1000);
     }
   </script>
 </html>
