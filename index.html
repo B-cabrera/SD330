@@ -5,7 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Test</title>
   </head>
+  <style>
+    h1 {
+      text-align: center;
+    }
+
+    body {
+      background-image: url(https://upload.wikimedia.org/wikipedia/en/thumb/4/4b/Marist_College_Seal_-_Vector.svg/640px-Marist_College_Seal_-_Vector.svg.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100vh;
+      background-color: burlywood;
+    }
+  </style>
+
   <body>
-    <h1>Hello World</h1>
+    <h1>Brenden Cabrera's File List</h1>
+
+    <p>
+      Hello, My name is Brenden Cabrera. I am student in Professor Tokash's
+      System Design Class.
+    </p>
+
+    <img
+      src="https://m.media-amazon.com/images/I/61CcDB-d0+L.jpg"
+      alt=""
+      width="200px"
+    />
+
+    <div id="files" style="display: flex; flex-direction: column"></div>
   </body>
+
+  <hr />
+  <footer>&copy; Brenden Cabrera | November 8th, 2023</footer>
+
+  <script>
+    function githubFilelist() {
+      // this creates JS object 'data' with a list of files
+      // change "aptokash/SD330" to your github id and repository name
+      (async () => {
+        const response = await fetch(
+          "https://api.github.com/repos/B-cabrera/SD330/contents/"
+        );
+        const data = await response.json();
+
+        // loop through the list of files, set "file" to each file name
+        for (let file of data) {
+          fname = file.name;
+          fpath = "https://b-cabrera.github.io/SD330/" + fname;
+
+          const anchor = document.createElement("a");
+          anchor.href = fpath;
+          anchor.innerText = fpath;
+
+          document.getElementById("files").appendChild(anchor);
+        }
+      })();
+    }
+
+    githubFilelist();
+  </script>
 </html>
