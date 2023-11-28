@@ -1,0 +1,188 @@
+{
+  "courses": {
+    "System Design": {
+      "courseNumber": 8204,
+      "semester": "Fall",
+      "credits": 3,
+      "professor": "Andrew Tokash",
+      "year": 2023,
+      "books": {
+        "Design 101": {
+          "fullTitle": "System Design 101",
+          "author": "John Doe",
+          "publication": "Scholastic",
+          "publicationYear": 2001,
+          "type": "physical"
+        },
+        "Design 102": {
+          "fullTitle": "System Design 102",
+          "author": "John Doe",
+          "publication": "Scholastic",
+          "publicationYear": 2002,
+          "type": "physical"
+        }
+      }
+    },
+    "Computer Org & Arch": {
+      "courseNumber": 3728,
+      "semester": "Fall",
+      "credits": 4,
+      "professor": "Brian Gormanly",
+      "year": 2023,
+      "books": {
+        "Computers Arch 101": {
+          "fullTitle": "Computers Arch 101",
+          "author": "Jane Doe",
+          "publication": "Scholastic",
+          "publicationYear": 1994,
+          "type": "digital"
+        },
+        "Computers Arch 102": {
+          "fullTitle": "Computers Arch 102",
+          "author": "Jane Doe",
+          "publication": "Scholastic",
+          "publicationYear": 1995,
+          "type": "digital"
+        }
+      }
+    },
+    "Capping 1": {
+      "courseNumber": 7283,
+      "semester": "Fall",
+      "credits": 3,
+      "professor": "Brian Gormanly",
+      "year": 2023,
+      "books": {
+        "Capping 101": {
+          "fullTitle": "College Capping 101",
+          "author": "Jeff Rob",
+          "publication": "Scholastic",
+          "publicationYear": 2010,
+          "type": "physical"
+        },
+        "Capping 102": {
+          "fullTitle": "College Capping 102",
+          "author": "Jeff Rob",
+          "publication": "Scholastic",
+          "publicationYear": 2011,
+          "type": "physical"
+        }
+      }
+    },
+    "Capping 2": {
+      "courseNumber": 6327,
+      "semester": "Spring",
+      "credits": 1,
+      "professor": "Brian Gormanly",
+      "year": 2023,
+      "books": {
+        "Capping 103": {
+          "fullTitle": "College Capping 103",
+          "author": "Jeff Rob",
+          "publication": "Scholastic",
+          "publicationYear": 2012,
+          "type": "physical"
+        },
+        "Capping 104": {
+          "fullTitle": "College Capping 104",
+          "author": "Jeff Rob",
+          "publication": "Scholastic",
+          "publicationYear": 2013,
+          "type": "physical"
+        }
+      }
+    },
+    "Algorithms": {
+      "courseNumber": 9710,
+      "semester": "Spring",
+      "credits": 3,
+      "professor": "Bowu Zhang ",
+      "year": 2023,
+      "books": {
+        "Algo 101": {
+          "fullTitle": "Data Structures & Algorithms 101",
+          "author": "Rob Kent",
+          "publication": "Scholastic",
+          "publicationYear": 2006,
+          "type": "physical"
+        },
+        "Algo 102": {
+          "fullTitle": "Data Structures & Algorithms 102",
+          "author": "Rob Kent",
+          "publication": "Scholastic",
+          "publicationYear": 2007,
+          "type": "physical"
+        }
+      }
+    },
+    "Data Communication": {
+      "courseNumber": 1252,
+      "semester": "Spring",
+      "credits": 3,
+      "professor": "Andrew Tokash",
+      "year": 2023,
+      "books": {
+        "Data Com 101": {
+          "fullTitle": "Data Communications 101",
+          "author": "Lin Taj",
+          "publication": "Scholastic",
+          "publicationYear": 2000,
+          "type": "physical"
+        },
+        "Data Com 102": {
+          "fullTitle": "Data Communications 102",
+          "author": "Lin Taj",
+          "publication": "Scholastic",
+          "publicationYear": 2001,
+          "type": "physical"
+        }
+      }
+    },
+    "Technology & Ethics": {
+      "courseNumber": 2347,
+      "semester": "Spring",
+      "credits": 3,
+      "professor": "Chris Algozzine",
+      "year": 2023,
+      "books": {
+        "Ethics 101": {
+          "fullTitle": "Ethics 101",
+          "author": "Taylor Boone",
+          "publication": "Scholastic",
+          "publicationYear": 2021,
+          "type": "digital"
+        },
+        "Ethics 102": {
+          "fullTitle": "Ethics 102",
+          "author": "Taylor Boone",
+          "publication": "Scholastic",
+          "publicationYear": 2022,
+          "type": "digital"
+        }
+      }
+    },
+    "Database Management": {
+      "courseNumber": 8923,
+      "semester": "Spring",
+      "credits": 3,
+      "professor": "Reza Sadeghi",
+      "year": 2023,
+      "books": {
+        "SQL 101": {
+          "fullTitle": "SQL 101",
+          "author": "Data Base",
+          "publication": "Scholastic",
+          "publicationYear": 2007,
+          "type": "physical"
+        },
+        "NoSQL 101": {
+          "fullTitle": "NoSQL 101",
+          "author": "Data Base",
+          "publication": "Scholastic",
+          "publicationYear": 2017,
+          "type": "physical"
+        }
+      }
+    }
+  }
+}
