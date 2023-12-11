@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FoxBooks</title>
+
+    <link rel="stylesheet" href="foxstyles.css" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div class="nav">
+      <img
+        src="https://github.com/B-cabrera/SD330/blob/main/foxbookslogofr.png?raw=true"
+        alt=""
+        width="200px"
+      />
+
+      <a href="foxbooks.html" class="navbtn">Home</a>
+      <a href="class-catalogue.html" class="navbtn">Class Catalogue</a>
+      <a href="booksearch.html" class="navbtn">Book Search</a>
+      <a href="404.html" class="navbtn">About Us</a>
+      <a href="404.html" class="navbtn">Contact Us</a>
+    </div>
+
+    <div class="crumbs"></div>
+
+    <div id="content"></div>
+  </body>
+
+  <script src="foxbooks.js"></script>
+
+  <script>
+    // get all classees
+
+    window.addEventListener("load", async () => {
+      const classesResponse = await fetch(
+        "https://b-cabrera.github.io/SD330/foxbooks.json"
+      );
+
+      const classesJSON = await classesResponse.json();
+      showClasses(classesJSON);
+    });
+
+    function showClasses(classesJSON) {
+      const contentDiv = document.getElementById("content");
+
+      for (classJSON of Object.entries(classesJSON.courses)) {
+        const [className, classInfoObj] = classJSON;
+
+        // class names
+        const titleElement = document.createElement("a");
+        titleElement.textContent = className;
+        titleElement.classList.add("classDisplay");
+        titleElement.style.textDecoration = "underline";
+
+        // class details
+        const detailsElement = document.createElement("div");
+        detailsElement.innerHTML = `
+          <p>Course Number: ${classInfoObj.courseNumber}</p>
+          <p>Credits: ${classInfoObj.credits}</p>
+          <p> ${classInfoObj.semester} ${classInfoObj.year} </p>
+          <p>Taught by ${classInfoObj.professor}</p>
+          
+        `;
+        detailsElement.style.textAlign = "center";
+        detailsElement.style.color = "white";
+
+        contentDiv.appendChild(titleElement);
+        contentDiv.appendChild(detailsElement);
+      }
+    }
+  </script>
+</html>

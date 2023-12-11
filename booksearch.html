@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FoxBooks</title>
+
+    <link rel="stylesheet" href="foxstyles.css" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div class="nav">
+      <img
+        src="https://github.com/B-cabrera/SD330/blob/main/foxbookslogofr.png?raw=true"
+        alt=""
+        width="200px"
+      />
+
+      <a href="foxbooks.html" class="navbtn">Home</a>
+      <a href="class-catalogue.html" class="navbtn">Class Catalogue</a>
+      <a href="booksearch.html" class="navbtn">Book Search</a>
+      <a href="404.html" class="navbtn">About Us</a>
+      <a href="404.html" class="navbtn">Contact Us</a>
+    </div>
+
+    <div class="crumbs"></div>
+
+    <div id="content" style="height: 80.4vh">
+      <select id="class-dropdown">
+        <option value="def">Select A Class</option>
+      </select>
+
+      <div
+        id="infodiv"
+        style="display: flex; justify-content: space-evenly; width: 100vw"
+      ></div>
+    </div>
+  </body>
+
+  <script src="foxbooks.js"></script>
+
+  <script>
+    window.addEventListener("load", async () => {
+      const classesResponse = await fetch(
+        "https://b-cabrera.github.io/SD330/foxbooks.json"
+      );
+
+      const classesJSON = await classesResponse.json();
+      const contentDiv = document.getElementById("content");
+
+      addDropdownChoices(classesJSON);
+      classDropdown.addEventListener("change", function () {
+        const selectedClass = this.value;
+        const infoDiv = document.getElementById("infodiv");
+
+        if (selectedClass == "def") {
+          infoDiv.innerHTML = "";
+          return;
+        }
+
+        const classBooks = classesJSON.courses[selectedClass].books;
+
+        /*
+        "Design 101": {
+          "fullTitle": "System Design 101",
+          "author": "John Doe",
+          "publication": "Scholastic",
+          "publicationYear": 2001,
+          "type": "physical"
+        }*/
+
+        infoDiv.textContent = "";
+        for (book of Object.entries(classBooks)) {
+          const { fullTitle, author, publication, publicationYear, type } =
+            book[1];
+
+          infoDiv.innerHTML += `
+            <div style="color: white;">
+              <h1>${fullTitle}</h1>
+
+              <p>By ${author}</p>
+              <p>${publication} ${publicationYear}</p>
+
+              <p>Book Type: ${type.toUpperCase()}</p>
+
+              <a href="404.html" class="navbtn" style="border: 1px solid white; padding: 5px">Order Now</a>
+            </div>
+          `;
+        }
+
+        contentDiv.appendChild(infoDiv);
+      });
+    });
+
+    const classDropdown = document.getElementById("class-dropdown");
+
+    function addDropdownChoices(classesJSON) {
+      for (classJSON of Object.entries(classesJSON.courses)) {
+        const [classTitle, classDetails] = classJSON;
+
+        const dropdownOption = document.createElement("option");
+        dropdownOption.value = classTitle;
+        dropdownOption.textContent = classTitle;
+
+        classDropdown.appendChild(dropdownOption);
+      }
+    }
+  </script>
+</html>
