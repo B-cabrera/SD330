@@ -24,11 +24,11 @@ window.onload = () => {
 
 function getPageNameandLink(windowLocation) {
   switch (windowLocation) {
-    case '/foxbooks.html':
+    case '/SD330/foxbooks.html':
       return ['Home', 'foxbooks.html']
-    case '/class-catalogue.html':
+    case '/SD330/class-catalogue.html':
       return ['Class Catalogue', 'class-catalogue.html']
-    case '/booksearch.html':
+    case '/SD330/booksearch.html':
       return ['Book Search', 'booksearch.html']
   }
 }
